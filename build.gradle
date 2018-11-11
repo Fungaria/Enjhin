@@ -1,0 +1,22 @@
+apply plugin: "java"
+
+sourceCompatibility = 1.6
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+archivesBaseName = 'enjhin'
+version = '2.6'
+
+
+eclipse.project {
+    name = appName + "-core"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task publish(dependsOn: ['jar', 'sourcesJar']){
+}
